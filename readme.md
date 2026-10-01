@@ -1,100 +1,166 @@
-# 🧠 Synapse – Electron Focus Broadcaster
-A lightweight Electron-based focus state manager that syncs your focus mode across devices using Firebase.
-Designed to work with the full Synapse ecosystem (Mobile App + Chrome Extension), this app enforces distraction-free workflows across desktop, browser, and mobile, all in real-time.
+# Synapse Electron
 
----
+A Windows-focused desktop productivity application built with Electron that helps users maintain distraction-free focus sessions by synchronizing focus state through Firebase and monitoring running applications.
 
-## ✅ Features
-- Two-way sync with Firebase (Realtime DB): Seamlessly updates and reads focusMode.
-- FocusMode Auto-reset: Automatically resets to OFF on app start and safe exit.
-- Live Focus Indicator: Visual ON/OFF indicator updates every second.
-- Secure Preload Architecture:
-    - Uses contextBridge and ipcRenderer.invoke channels only.
-    - Completely isolates Node.js logic from renderer.
-- Background Process Monitoring:
-    - Detects whitelisted productivity apps.
-    - Instantly kills blacklisted distraction apps when focus is triggered.
-- Popup Interruption Alert:
-    - Custom modal (popup.html) triggered when user tries to open a blacklisted app.
-    - Asks user for intent before continuing.
-- Auto-generated User ID:
-    - 8-character secure ID saved in data/user_id.txt.
-    - Displayed as XXXX-XXXX in UI.
-- Optimized IPC Channels:
-    - getFocusMode, setFocusMode, resetFocusMode, and getUsername.
-- State-aware Polling Loop:
-    - Every 1.5s, checks system processes to determine active mode.
+## Overview
 
-    - Prevents redundant writes to Firebase.
+Synapse Electron provides a desktop layer for a cross-device focus workflow. The application maintains a shared focus state and reacts to local system activity so that distracting applications can be restricted while a focus session is active.
 
-- Supports Popup + Main UI:
-    - Independent windows for main dashboard and interruption modal.
-- Failsafe Error Logging:
-    - Gracefully handles all fetch, file system, and process-killing errors.
-- Fullscreen, distraction-free experience:
-    - Intended for immersive workflows.
-    - Can run silently in background on startup.
+The application uses Electron's main process for system-level operations and exposes a limited API to the renderer through Electron's preload layer.
 
----
+## Features
 
-## 🧩 Requirements
+* **Focus mode synchronization** using Firebase Realtime Database
+* **Real-time focus indicator** for the current session state
+* **Automatic focus-state reset** during application startup and shutdown
+* **Application monitoring** for detecting running processes
+* **Distraction blocking** for configured applications during focus sessions
+* **Interruption popup** when a restricted application is detected
+* **Persistent local user identifier** for associating a desktop installation with its synchronized state
+* **Electron IPC architecture** using `contextBridge` and controlled IPC channels
+* **Separate main and popup windows** for the desktop experience
+* **Error handling** for Firebase, filesystem, and process-management operations
 
-- *Currently only compatible with Windows*
-- *Node.js v16+*
-- *Firebase Project with:*
-    - Realtime Database enabled
-    - Web API Key generated
+## Architecture
 
----
+The application follows a simple Electron architecture:
 
-## 🛠 Installation
-
-### 1. Clone the Repository
-
-```bash
-git clone https://github.com/Aditya11835/Synapse-Electron.git
-cd synapse-electron
+```text
+┌──────────────────────────────┐
+│         Renderer UI          │
+│     HTML / CSS / JS          │
+└──────────────┬───────────────┘
+               │
+        Controlled IPC
+               │
+┌──────────────▼───────────────┐
+│          preload.js          │
+│     contextBridge API        │
+└──────────────┬───────────────┘
+               │
+┌──────────────▼───────────────┐
+│           main.js            │
+│  Electron + system services  │
+└──────────────┬───────────────┘
+               │
+       ┌───────┴────────┐
+       ▼                ▼
+   Firebase         Windows
+  Realtime DB     Process APIs
 ```
 
-### 2. Install dependencies
+### Main components
+
+| File               | Responsibility                                                           |
+| ------------------ | ------------------------------------------------------------------------ |
+| `main.js`          | Electron main process, application lifecycle and system-level operations |
+| `preload.js`       | Secure bridge between renderer and main process                          |
+| `renderer.js`      | Main application UI logic                                                |
+| `popupRenderer.js` | Interruption popup logic                                                 |
+| `index.html`       | Main application interface                                               |
+| `popup.html`       | Focus interruption interface                                             |
+| `styles.css`       | Main application styling                                                 |
+| `popupstyle.css`   | Popup styling                                                            |
+| `.env.example`     | Environment variable template                                            |
+
+## Technology Stack
+
+* **Electron**
+* **JavaScript**
+* **HTML5**
+* **CSS3**
+* **Firebase Realtime Database**
+* **Node.js**
+* **systeminformation**
+* **fkill**
+* **nanoid**
+* **dotenv**
+
+## Requirements
+
+* Windows
+* Node.js 16 or later
+* npm
+* A Firebase project with Realtime Database enabled
+
+## Setup
+
+### 1. Install dependencies
+
 ```bash
 npm install
 ```
 
-### 3. Configure Environment Variables
-Create a .env file in the root directory:
-```bash
-FIREBASE_URL=https://your-database-url.firebaseio.com
+### 2. Configure Firebase
+
+Create a `.env` file in the project root:
+
+```env
+FIREBASE_URL=your_firebase_realtime_database_url
 API_KEY=your_firebase_web_api_key
 ```
 
-## ▶️ Run the App
+Do not commit your actual `.env` file or Firebase credentials.
+
+### 3. Start the application
+
 ```bash
-npm run start
+npm start
 ```
 
----
+## Security Considerations
 
-## 🌐 Works With
-| Component           | Repo                                                                       |
-| ------------------- | -------------------------------------------------------------------------- |
-| 📱 Flutter App      | [Synapse-Mobile](https://github.com/Zyphon12342/HarmonicDistruptionApp)                  |
-| 🌐 Chrome Extension | [Synapse-Extension](https://github.com/Utsavvv1/browser-ext) |
+The application uses Electron's preload architecture to keep Node.js capabilities separated from renderer code.
 
-## 👥 Contributors
-| Name                  | GitHub                                                         |
-| --------------------- | -------------------------------------------------------------- |
-| Utsav Verma           | [@Utsavvv1](https://github.com/Utsavvv1)                       |
-| Aaryan Singh Rathore  | [@AaryanSingthRathore](https://github.com/AaryanSingthRathore) |
-| Anomitra Bhattacharya | [@anomitroid](https://github.com/anomitroid)                   |
-| Aditya Negi           | [@Aditya11835](https://github.com/Aditya11835)                 |
-| Shivansh Kandpal      | [@Zyphon12342](https://github.com/Zyphon12342)                 |
+Key security measures include:
 
-## 🛡 Security Highlights (New)
-- contextIsolation: true and nodeIntegration: false enforced.
-- Only whitelisted APIs are exposed via preload.js.
-- Firebase credentials remain local via .env file (never hardcoded).
-- App logic centralized in main.js, keeping preload.js minimal.
+* `contextIsolation` for renderer isolation
+* `nodeIntegration` disabled for renderer content
+* Controlled APIs exposed through `contextBridge`
+* Firebase configuration supplied through environment variables
+* System-level operations kept in the Electron main process
 
-## 📜 License
-This project is licensed under the ICS License.
+## Project Structure
+
+```text
+Synapse-Electron/
+│
+├── assets/
+│   ├── logosynapse.png
+│   ├── titlelogo.svg
+│   └── Mediamodifier-Design.svg
+│
+├── index.html
+├── main.js
+├── preload.js
+├── renderer.js
+│
+├── popup.html
+├── popupRenderer.js
+│
+├── styles.css
+├── popupstyle.css
+│
+├── .env.example
+├── .gitignore
+├── package.json
+└── package-lock.json
+```
+
+## Development
+
+The project is intentionally kept lightweight and uses Electron's native process model rather than introducing a large frontend framework.
+
+Areas suitable for further development include:
+
+* Configurable focus profiles
+* Improved process-management rules
+* Cross-platform process support
+* Session history and analytics
+* Desktop notifications
+* Improved synchronization conflict handling
+* Packaging and auto-update support
+
+## License
+
+See the repository's license information for the terms applicable to the project and its dependencies.

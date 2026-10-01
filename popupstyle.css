@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* Apply border-box universally to prevent overflow issues */
+* {
+  box-sizing: border-box;
+}
+
+
+body {
+  margin: 0;
+  background-color: #1a192e;
+  font-family: 'Montserrat', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.popup-card {
+  background-color: #1a192e;
+  border-radius: 20px;
+  width: 300px;
+  padding: 25px 20px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  text-align: center;
+  color: #f3e6f4;
+}
+
+.popup-card h1 {
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: #f3e6f4;
+  letter-spacing: 1px;
+}
+
+.icon {
+  margin: 15px 0 5px;
+  display: flex;
+  justify-content: center;
+}
+
+
+.subtext {
+  font-size: 13px;
+  margin-bottom: 20px;
+  color: #c6c6c6;
+}
+
+.question {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 8px;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 20px;
+  border: 1px solid #6658d3;
+  background-color: transparent;
+  color: #f3e6f4;
+  outline: none;
+  font-size: 14px;
+  margin-bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
+}
+
+input::placeholder {
+  color: #a6a6a6;
+}
+
+button#exit {
+  width: 100%;
+  padding: 10px;
+  background-color: #7d5fff;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  font-family: 'Montserrat', sans-serif;
+}
+
+button#exit:hover {
+  background-color: #6a4fe0;
+}
+
+input[type="text"] {
+  box-shadow: 0 0 4px rgba(102, 88, 211, 0.2);
+}
+

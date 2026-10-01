@@ -1,0 +1,23 @@
+{
+  "name": "synapse-electron",
+  "version": "1.0.0",
+  "description": "Synapse desktop app built using Electron",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Aditya11835",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^37.1.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.0.0",
+    "firebase": "^11.10.0",
+    "fkill": "^9.0.0",
+    "nanoid": "^5.1.5",
+    "node-fetch": "^3.3.2",
+    "systeminformation": "^5.27.7"
+  }
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="Content-Security-Policy" content="
+            default-src 'self';
+            style-src 'self' https://fonts.googleapis.com;
+            font-src 'self' https://fonts.gstatic.com;
+            connect-src 'self' https://*.firebasedatabase.app;">
+
+        <title>Synapse</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="dashboard loading">
+
+            <!-- Header -->
+            <div class="header">
+            <div class="logo-container">
+                <div class="synapse-logo">
+                <img src="assets\titlelogo.svg" alt="Synapse Logo" class="synapse-logo" />
+                </div>
+            </div>
+            <div class="user-greeting" id="userGreeting">Hello User</div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+            <div class="id-section">
+                <div class="user-id-display">
+                <div class="user-id" id="userId"></div>
+                <div class="id-label">Your Unique ID</div>
+                </div>
+                <div class="note-box glass-effect">
+                <div class="note-text">Enter this on your phone to sync with your PC</div>
+                </div>
+            </div>
+
+            <!-- Edit Buttons -->
+            <div class="edit-buttons">
+                <button type="button" class="edit-btn work-apps-btn" id="editWorkAppsBtn">Edit Work Apps</button>
+                <button type="button" class="edit-btn distractions-btn" id="editDistractionsBtn">Edit Distractions</button>
+            </div>
+            </div>
+
+            <!-- Focus Status -->
+            <div class="focus-status">
+            <span class="focus-text focus-label">Focus Mode : </span>
+            <span class="focus-text focus-state off" id="focusState">OFF</span>
+            <div class="status-indicator off" id="statusIndicator"></div>
+            </div>
+        </div>
+        <script src="renderer.js"></script>
+    </body>
+</html>

@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+            
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: 'Montserrat', sans-serif;
+                background: linear-gradient(180deg, #1A171A 75%, #201E40 100%);
+                min-height: 100vh;
+                overflow: hidden;
+                user-select: none;
+                -webkit-app-region: drag;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+            
+            .dashboard {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                align-items: center;
+                padding: 40px 0;
+                position: relative;
+            }
+            
+            .header {
+                width: 100%;
+                padding: 0 85px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                -webkit-app-region: no-drag;
+            }
+            
+            .logo-container {
+                width: 391px;
+                height: 99px;
+                position: relative;
+            }
+            
+            .synapse-logo {
+                position: absolute;
+                left: -0.08px;
+                top: 20.58px;
+            }
+            
+            .user-greeting {
+                color: white;
+                font-size: 29px;
+                font-weight: 500;
+                text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.41);
+                transition: all 0.3s ease;
+            }
+            
+            .main-content {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 40px;
+                -webkit-app-region: no-drag;
+            }
+            
+            .id-section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 33px;
+                padding: 63px 17px;
+            }
+            
+            .user-id-display {
+                text-align: center;
+            }
+            
+            .user-id {
+                color: white;
+                font-size: 67px;
+                font-weight: 600;
+                text-shadow: 0px 4px 87px rgba(241, 241, 241, 0.69);
+                letter-spacing: 2px;
+                margin-bottom: 10px;
+                transition: all 0.3s ease;
+            }
+            
+            .user-id:hover {
+                transform: scale(1.02);
+                text-shadow: 0px 6px 100px rgba(241, 241, 241, 0.8);
+            }
+            
+            .id-label {
+                color: white;
+                font-size: 29px;
+                font-weight: 400;
+                text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.41);
+            }
+            
+            .note-box {
+                padding: 17px 44px;
+                background: rgba(70, 70, 70, 0.8);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                border-radius: 49px;
+                box-shadow: 0px 4px 49px rgba(0, 0, 0, 0.26);
+                transition: all 0.3s ease;
+            }
+            
+            .note-box:hover {
+                background: rgba(70, 70, 70, 0.9);
+                transform: translateY(-2px);
+                box-shadow: 0px 8px 60px rgba(0, 0, 0, 0.35);
+            }
+            
+            .note-text {
+                color: white;
+                font-size: 16px;
+                font-weight: 400;
+                text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.41);
+            }
+            
+            .edit-buttons {
+                display: flex;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .edit-btn {
+                padding: 17px 44px;
+                border: none;
+                border-radius: 49px;
+                color: white;
+                font-size: 20px;
+                font-weight: 500;
+                font-family: 'Montserrat', sans-serif;
+                text-shadow: 0px 2px 3px rgba(0, 0, 0, 0.41);
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0px 4px 49px rgba(0, 0, 0, 0.26);
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .edit-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+                transition: left 0.5s;
+            }
+            
+            .edit-btn:hover::before {
+                left: 100%;
+            }
+            
+            .edit-btn:hover {
+                transform: translateY(-3px);
+                box-shadow: 0px 8px 60px rgba(0, 0, 0, 0.35);
+            }
+            
+            .edit-btn:active {
+                transform: translateY(-1px);
+            }
+            
+            .work-apps-btn {
+                background: linear-gradient(135deg, #769AFF 0%, #5A7CFF 100%);
+                width: 262px;
+            }
+            
+            .work-apps-btn:hover {
+                background: linear-gradient(135deg, #8AABFF 0%, #6B8DFF 100%);
+            }
+            
+            .distractions-btn {
+                background: linear-gradient(135deg, #362DB7 0%, #4A3DC7 100%);
+                width: 262px;
+            }
+            
+            .distractions-btn:hover {
+                background: linear-gradient(135deg, #453BC7 0%, #5B4AD7 100%);
+            }
+            
+            .focus-status {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                position: relative;
+            }
+            
+            .focus-text {
+                font-size: 47px;
+                font-weight: 600;
+                text-shadow: 0px 3px 61px rgba(0, 0, 0, 0.29);
+            }
+            
+            .focus-label {
+                color: white;
+            }
+            
+            .focus-state {
+                color: #769AFF;
+                position: relative;
+            }
+            
+            .focus-state.on {
+                color: #4CAF50;
+                animation: pulse 2s infinite;
+            }
+            
+            .focus-state.off {
+                color: #FF6B6B;
+            }
+            
+            @keyframes pulse {
+                0% { opacity: 1; }
+                50% { opacity: 0.7; }
+                100% { opacity: 1; }
+            }
+            
+            .status-indicator {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                margin-left: 15px;
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+                transition: all 0.3s ease;
+            }
+            
+            .status-indicator.on {
+                background: #4CAF50;
+                box-shadow: 0 0 25px rgba(76, 175, 80, 0.6);
+            }
+            
+            .status-indicator.off {
+                background: #FF6B6B;
+                box-shadow: 0 0 25px rgba(255, 107, 107, 0.6);
+            }
+            
+            /* Window controls */
+            .focus-toggle {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                display: flex;
+                gap: 10px;
+                z-index: 1000;
+                -webkit-app-region: no-drag;
+            }
+            
+            .control-btn {
+                width: 16px;
+                height: 16px;
+                border-radius: 50%;
+                border: none;
+                cursor: pointer;
+                transition: all 0.2s ease;
+            }
+            
+            .control-btn:hover {
+                transform: scale(1.1);
+            }
+            
+            .focus_on-btn {
+                background: #0eaa2d;
+            }
+            
+            .focus_off-btn {
+                background: #FF5F56;
+            }
+            
+            /* Responsive design */
+            @media (max-width: 1200px) {
+                .header {
+                    padding: 0 40px;
+                }
+                
+                .user-id {
+                    font-size: 50px;
+                }
+                
+                .focus-text {
+                    font-size: 35px;
+                }
+                
+                .edit-buttons {
+                    flex-direction: column;
+                    gap: 10px;
+                }
+                
+                .edit-btn {
+                    width: 280px;
+                }
+            }
+            
+            /* Loading animation */
+            .loading {
+                opacity: 0;
+                animation: fadeIn 0.5s ease forwards;
+            }
+            
+            @keyframes fadeIn {
+                to { opacity: 1; }
+            }
+            
+            /* Glassmorphism effect for better visual appeal */
+            .glass-effect {
+                background: rgba(255, 255, 255, 0.05);
+                backdrop-filter: blur(10px);
+                border: 1px solid rgba(255, 255, 255, 0.1);
+            }

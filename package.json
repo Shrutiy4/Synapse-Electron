@@ -7,7 +7,7 @@
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Aditya11835",
+  "author": "",
   "license": "ISC",
   "devDependencies": {
     "electron": "^37.1.0"
